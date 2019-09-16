@@ -41,7 +41,7 @@ void main(){
         cola *c;
         int men;
         c = (cola*)malloc(sizeof(cola));
-        c->head = NULL;/*c = NULL*/
+        c->head = NULL;
         c->last = NULL;
         do{
         men = menu();

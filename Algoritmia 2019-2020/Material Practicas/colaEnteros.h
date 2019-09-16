@@ -13,10 +13,14 @@
 #include <stdbool.h>
 
  typedef int tipoElementoCola;
+
+ 
  typedef struct celdaC{
 	 tipoElementoCola elem;
 	 struct celdaC *sig;
  } celdaCola; 
+
+
 typedef struct tipoC{
 	celdaCola* ini;
 	celdaCola* fin;
