@@ -1,6 +1,10 @@
-all: colaEnterosMain.c colaEnteros.c
+lib: colaEnteros.c
 	gcc -c colaEnteros.c
-	gcc colaEnterosMain.c -o colaEnterosMain -Wall -pedantic
+
+cola: colaEnterosMain.c colaEnteros.o
+	gcc -o colaEnterosMain colaEnterosMain.c colaEnteros.o -Wall -pedantic
+
+all: lib cola
 	
 
 clean:

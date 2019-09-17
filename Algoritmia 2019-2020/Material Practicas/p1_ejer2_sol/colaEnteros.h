@@ -2,12 +2,12 @@
 
 typedef int tipoElementoCola;
 
-typedef struct _celdaC{
+typedef struct celdaC{
   	int elem;
   	struct celdaC *sig;
 }celdaC; 
 
-typedef struct _cola{
+typedef struct cola{
 	struct celdaC *head;
   	struct celdaC *fin;
 }cola;
@@ -24,4 +24,4 @@ bool esNulaCola(cola *c);
 
 void mostrarCola(cola *c);
 
-void buscar(cola *c);
+bool buscar(cola *c, int auxElem);

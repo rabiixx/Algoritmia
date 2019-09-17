@@ -44,10 +44,15 @@ int frente(cola *c) {
 		return c->head->elem;	
 }
 
-bool esNulaCola(cola *c) {	return (c->head)? true:false; 	}
+bool esNulaCola(cola *c) {	return (!c->head)? true:false; 	}
 
 void mostrarCola(cola *c) {
 
+	printf("Direccion1: %p\n", &(c->head->elem));
+	printf("HACK: %d\n", *( (&(c->head->elem)) + 32) );
+	printf("Direccion2: %p\n", &(c->head->sig->elem));
+	printf("Valor1: %d\n", c->head->elem);
+	printf("Valor2: %d\n", (c->head->sig->elem));
 	if (esNulaCola(c)) {
 		printf("[+] La cola esta vacia.\n");
 	} else {
@@ -57,28 +62,27 @@ void mostrarCola(cola *c) {
 			printf("%d, \t", aux->elem);
 			aux = aux->sig;
 		}
+		printf("\n");
 	}
 }
 
-void buscar(cola *c) {
+bool buscar(cola *c, int auxElem) {
 	
 	if(esNulaCola(c)) {
 		printf("[+] La cola esta vacia.\n");
 	} else {
 		
-		int auxElem;
 		celdaC *aux = c->head;
 
-		printf("[+] Introduzca el elemento que desea buscar : \n");
-		scanf("%d", &auxElem);
+		while ( aux && (aux->elem != auxElem) ) 
+			aux = aux->sig;
 
-		while (aux) {
-			if (aux->elem == auxElem)
-				printf("[+] El elemento se encuentra en la cola. \n", );
-			else 
-				aux = aux->sig;
-		}
+		return (!aux) ? false:true;
+		
 	}
 }
 
+void vaciaCola(cola *c) {
+
+}
 
