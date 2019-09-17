@@ -1,24 +1,13 @@
-
-#include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "colaEnteros.h"
 
-
 //typedef int tipoElementoCola;
- 
-typedef struct _celdaC{
-	int elem;
-	celdaC *sig;
-}celdaC; 
-
-
-typedef struct _cola{
-	celdaCola *head;
-	celdaCola fin;
-}cola;
 
 void nuevaCola(cola *c) {
-	c = NULL;
+	c->head = NULL;
+	c->fin = NULL;
 }
 
 void encolar(cola *c, int auxElem){
@@ -27,11 +16,11 @@ void encolar(cola *c, int auxElem){
 	aux->elem = auxElem;
 	aux->sig = NULL;
 
-	if (esNulaCola) { 
+	if (esNulaCola(c)) { 
 		c->head = aux;
 		c->fin = aux;
 	} else {
-		(c->fin).sig = aux;
+		(c->fin)->sig = aux;
 		c->fin = aux;
 	}
 }
@@ -55,7 +44,7 @@ int frente(cola *c) {
 		return c->head->elem;	
 }
 
-bool esNulaCola(tipoCola) {	return (c->head)? true:false; 	}
+bool esNulaCola(cola *c) {	return (c->head)? true:false; 	}
 
 void mostrarCola(cola *c) {
 
@@ -66,7 +55,7 @@ void mostrarCola(cola *c) {
 		printf("Cola: ");
 		while (aux) {
 			printf("%d, \t", aux->elem);
-			aux = aux->sig
+			aux = aux->sig;
 		}
 	}
 }
@@ -77,14 +66,14 @@ void buscar(cola *c) {
 		printf("[+] La cola esta vacia.\n");
 	} else {
 		
-		int elem;
-		celda *aux = c->head;
+		int auxElem;
+		celdaC *aux = c->head;
 
 		printf("[+] Introduzca el elemento que desea buscar : \n");
-		scanf("%d", &elem);
+		scanf("%d", &auxElem);
 
 		while (aux) {
-			if (aux->elem == elem)
+			if (aux->elem == auxElem)
 				printf("[+] El elemento se encuentra en la cola. \n", );
 			else 
 				aux = aux->sig;

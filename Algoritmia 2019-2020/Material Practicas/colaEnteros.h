@@ -12,26 +12,29 @@
 
 #include <stdbool.h>
 
- typedef int tipoElementoCola;
-
- 
- typedef struct celdaC{
-	 tipoElementoCola elem;
-	 struct celdaC *sig;
- } celdaCola; 
+typedef int tipoElementoCola;
 
 
-typedef struct tipoC{
-	celdaCola* ini;
-	celdaCola* fin;
-}tipoCola;
+typedef struct _celdaC{
+  int elem;
+  celdaC *sig;
+}celdaC; 
 
-void nuevaCola(tipoCola *);
+typedef struct _cola{
+  celdaCola *head;
+  celdaCola *fin;
+}cola;
 
-void encolar(tipoCola *, tipoElementoCola);
+void nuevaCola(cola *c);
 
-void desencolar(tipoCola *);
+void encolar(cola *c, int auxElem);
 
-tipoElementoCola frente(tipoCola);
+void desencolar(cola *c);
 
-bool esNulaCola(tipoCola);
+int frente(cola *c);
+
+bool esNulaCola(cola *c);
+
+void mostrarCola(cola *c);
+
+void buscar(cola *c);
