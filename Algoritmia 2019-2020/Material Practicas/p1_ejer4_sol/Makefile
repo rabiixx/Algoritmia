@@ -6,6 +6,7 @@ seq: ejecutarSecuenciaEnteros.c pilaEnterosDinamica.o secuenciaEnteros.o
 
 all: libs seq
 	
-
 clean:
 	@- rm -f -v ejecutarSecuenciaEnteros
+	@- rm -f -v pilaEnterosDinamica.o
+	@- rm -f -v secuenciaEnteros.o

@@ -12,12 +12,12 @@
 
 #include <stdbool.h>
 
- typedef int tipoElementoPila;
+typedef int tipoElementoPila;
 
- typedef struct celdaP{
-	 tipoElementoPila elem;
-	 struct celdaP *sig;
- } celdaPila; 
+typedef struct celdaP {
+	tipoElementoPila elem;
+	struct celdaP *sig;
+ }celdaPila; 
  
 typedef celdaPila* tipoPila;
 

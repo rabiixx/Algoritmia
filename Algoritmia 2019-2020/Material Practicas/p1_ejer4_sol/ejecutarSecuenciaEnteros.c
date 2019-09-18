@@ -10,9 +10,10 @@
   grado en Ingeniería Informática de la UPNA).
 */
 
-#include<stdio.h>
+#include <stdio.h>
 
 #include "secuenciaEnteros.h"
+#include "pilaEnterosDinamica.h"
 
 int main(){
 	tipoElementoPila elem;

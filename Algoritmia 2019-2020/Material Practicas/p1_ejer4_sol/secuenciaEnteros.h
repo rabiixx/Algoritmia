@@ -11,11 +11,12 @@
 */
 
 #include "pilaEnterosDinamica.h"
+#include <stdbool.h>
 
-  typedef struct sec{
-	   tipoPila pilaIzq;
-	   tipoPila pilaDcha;
-  } tipoSecuencia; 
+typedef struct sec {
+	tipoPila pilaIzq;
+	tipoPila pilaDcha;
+} tipoSecuencia; 
 
 void nuevaSecuencia(tipoSecuencia*);
 
