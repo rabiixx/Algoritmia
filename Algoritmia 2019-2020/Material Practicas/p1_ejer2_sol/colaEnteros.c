@@ -17,11 +17,11 @@ void encolar(cola *c, int auxElem){
 	aux->sig = NULL;
 
 	if (esNulaCola(c)) { 
-		c->head = aux;
-		c->fin = aux;
+		*(c->head) = aux;
+		*(c->fin) = aux;
 	} else {
-		(c->fin)->sig = aux;
-		c->fin = aux;
+		*(c->fin)->sig = aux;
+		*(c->fin) = aux;
 	}
 }
 
@@ -30,8 +30,8 @@ void desencolar(cola *c) {
 		printf("[+] La cola esta vacia.\n");
 	} else {
 		celdaC *aux;
-		aux = c->head;
-		c->head = aux->sig;		//c->head = (c->head)->sig
+		aux = *(c->head);
+		*(c->head) = aux->sig;		//c->head = (c->head)->sig
 		printf("[+] %d desencolado.\n", aux->elem);
 		free(aux);
 	}
