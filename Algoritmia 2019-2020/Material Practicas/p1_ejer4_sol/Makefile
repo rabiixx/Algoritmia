@@ -1,10 +1,13 @@
-libs: pilaEnterosDinamica.c secuenciaEnteros.c
-	gcc -c pilaEnterosDinamica.c secuenciaEnteros.c
+lib1: pilaEnterosDinamica.c 
+	gcc -c pilaEnterosDinamica.c 
+lib2: secuenciaEnteros.c
+	gcc -c secuenciaEnteros.c
+
 
 seq: ejecutarSecuenciaEnteros.c pilaEnterosDinamica.o secuenciaEnteros.o
 	gcc -o ejecutarSecuenciaEnteros ejecutarSecuenciaEnteros.c pilaEnterosDinamica.o secuenciaEnteros.o -Wall -pedantic
 
-all: libs seq
+all: lseq
 	
 clean:
 	@- rm -f -v ejecutarSecuenciaEnteros

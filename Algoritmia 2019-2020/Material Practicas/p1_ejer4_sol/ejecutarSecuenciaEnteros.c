@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 #include "secuenciaEnteros.h"
-#include "pilaEnterosDinamica.h"
+//#include "pilaEnterosDinamica.h"
 
 int main(){
 	tipoElementoPila elem;

@@ -59,9 +59,9 @@ int main(int argc, char const *argv[])
 	nuevaCola(&cola);
 
 
-	for (int i = 1; i < numRes; ++i)
+	for (int i = 1; i < (numRes + 1); ++i)
 		encolar(&cola, i);
-
+	mostrar(cola);
 	Josephus(&cola, paso, numRes);
 
 	return 0;

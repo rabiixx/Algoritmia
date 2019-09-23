@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "pilaEnterosDinamica.h"
+//#include "pilaEnterosDinamica.h"
 #include "secuenciaEnteros.h"
 
 
