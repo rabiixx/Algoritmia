@@ -38,3 +38,7 @@ tipoElementoColaDoble elemPrimero(tipoColaDoble);
 tipoElementoColaDoble elemUltimo(tipoColaDoble);
 
 bool esNulaColaDoble(tipoColaDoble);
+
+void mostrar(tipoColaDoble);
+
+void vaciarColaDoble(tipoColaDoble*);

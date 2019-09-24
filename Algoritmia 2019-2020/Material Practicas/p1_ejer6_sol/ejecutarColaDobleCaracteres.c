@@ -10,11 +10,14 @@
   grado en Ingeniería Informática de la UPNA).
 */
 
-#include<stdio.h>
-
+#include <stdio.h>
+#include <stdlib.h>
 #include "colaDobleCaracteres.h"
 
-int main(){
+int main(void){
+
+	system("clear");
+
 	tipoElementoColaDoble elem;
 	tipoColaDoble cola;
 	int opcion;
@@ -29,18 +32,20 @@ int main(){
 		printf("4 - Desencolar un elemento del final\n");
 		printf("5 - Mostrar el elemento del inicio.\n");
 		printf("6 - Mostrar el elemento del final.\n");
-		printf("7 - Salir.\n");
+		printf("7 - Mostrar cola doble completa.\n");
+		printf("8 - Vaciar cola doble completa.\n");
+		printf("9 - Salir.\n");
 		printf("Escoja una opcion: ");
 		scanf("%d",&opcion);
 		switch(opcion){           
 			case 1: 
 				printf("Introduce el entero: ");
-				scanf("%d",&elem);
+				scanf(" %c",&elem);
 				encolarPrimero(&cola,elem);
 				break;   
 			case 2: 
 				printf("Introduce el entero: ");
-				scanf("%d",&elem);
+				scanf(" %c",&elem);
 				encolarUltimo(&cola,elem);
 				break; 
 			case 3: 
@@ -53,12 +58,23 @@ int main(){
 				break;
 			case 5:
 				elem=elemPrimero(cola);
-				printf("El primer elemento es %d\n",elem);
+				printf("El primer elemento es %c\n",elem);
 				break;
 			case 6:
 				elem=elemUltimo(cola);
-				printf("El ultimo elemento es %d\n",elem);
+				printf("El ultimo elemento es %c\n",elem);
 				break;
+			case 7:
+				printf("Cola doble: ");
+				mostrar(cola);
+				break;
+			case 8:
+				vaciarColaDoble(&cola);
+				printf("La cola doble se ha vaciado correctamente.\n");
+
 		}
-	}while(opcion<7);
+	}while(opcion<9);
+
+	system("clear");
+	return EXIT_SUCCESS;
 }
