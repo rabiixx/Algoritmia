@@ -64,7 +64,7 @@ void desencolarUltimo(tipoColaDoble *c) {
 		printf("La cola doble esta vacia\n");
 	} else {
 		celdaColaDoble *aux = c->fin;
-		if (aux->ant != NULL)
+		if (aux->ant != NULL)	
 			aux->ant->sig = NULL;
 		c->fin = aux->ant;
 		free(aux);
