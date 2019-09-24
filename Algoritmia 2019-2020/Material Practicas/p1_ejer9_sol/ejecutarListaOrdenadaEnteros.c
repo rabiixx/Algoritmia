@@ -11,9 +11,13 @@
 */
 
 #include<stdio.h>
+#include <stdlib.h>
 #include "listaOrdenadaEnteros.h"
 
-int main(){
+int main(void){
+
+	system("clear");
+
 	tipoElementoLista elem;
 	tipoLista lista,lista2;
 	int opcion;
@@ -54,9 +58,11 @@ int main(){
 				printf("Se ha eliminado un elemento\n");
 				break;
 			case 5:
+				printf("Lista 1: ");
 				imprimirLista(lista);
 				break;
 			case 6:
+				printf("Lista 2: ");
 				imprimirLista(lista2);
 				break;
 			case 7: 
@@ -71,5 +77,8 @@ int main(){
 				concatenar(&lista,&lista2);
 				break;
 		}
+		//system("clear");
 	}while(opcion<9);
+
+	return 0;
 }
