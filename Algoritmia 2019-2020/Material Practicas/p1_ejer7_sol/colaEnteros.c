@@ -32,7 +32,7 @@ void desencolar(tipoCola *c) {
 		celdaCola *aux;
 		aux = c->ini;
 		c->ini = aux->sig;		//c->head = (c->head)->sig
-		printf("[+] %d desencolado.\n", aux->elem);
+		printf("[+] %c desencolado.\n", aux->elem);
 		free(aux);
 	}
 }
@@ -46,27 +46,4 @@ tipoElementoCola frente(tipoCola c) {
 
 bool esNulaCola(tipoCola c) {
 	return ( (c.ini == NULL) && (c.fin == NULL) );
-}
-
-
-void encriptar(tipoCola *c) {
-
-	celdaCola *aux1;
-	celdaCola *aux2;
-
-	aux1 = c->head;
-	aux2 = (c->head)->sig;
-
-	if( esCons(aux1->elem) && esCons(aux2->elem) ) {
-		aux1 = 
-
-
-
-		twist()
-	} 
-}
-
-
-bool esCons(char ch) {
-	return ( (ch != 'a') && (ch != 'e') && (ch != 'i') && (ch != 'o') && (ch != 'u') )
 }

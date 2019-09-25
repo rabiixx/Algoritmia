@@ -1,5 +1,5 @@
 /*
-  FICHERO: colaEnteros.h
+  FICHERO: pilaEnterosDinamica.h
   VERSION: 1.0.0
   HISTORICO:
   Creado por Aránzazu Jurío Munárriz el 09/09/19.
@@ -12,22 +12,22 @@
 
 #include <stdbool.h>
 
- typedef char tipoElementoCola;
- typedef struct celdaC{
-	 tipoElementoCola elem;
-	 struct celdaC *sig;
- } celdaCola; 
-typedef struct tipoC{
-	celdaCola* ini;
-	celdaCola* fin;
-}tipoCola;
+ typedef char tipoElementoPila;
 
-void nuevaCola(tipoCola *);
+ typedef struct celdaP{
+	 tipoElementoPila elem;
+	 struct celdaP *sig;
+ } celdaPila; 
+ 
+typedef celdaPila* tipoPila;
 
-void encolar(tipoCola *, tipoElementoCola);
+void nuevaPila(tipoPila *);
 
-void desencolar(tipoCola *);
+void apilar(tipoPila *, tipoElementoPila);
 
-tipoElementoCola frente(tipoCola);
+void desapilar(tipoPila *);
 
-bool esNulaCola(tipoCola);
+tipoElementoPila cima(tipoPila);
+
+bool esNulaPila(tipoPila);
+

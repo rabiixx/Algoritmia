@@ -1,11 +1,17 @@
-lib: colaEnteros.c
+pila: pilaEnterosDinamica.c
+	gcc -c pilaEnterosDinamica.c
+
+cola: colaEnteros.c
 	gcc -c colaEnteros.c
 
-cola: ejecutarColaEnteros.c colaEnteros.o
-	gcc -o ejecutarColaEnteros ejecutarColaEnteros.c colaEnteros.o -Wall -pedantic
 
-all: lib cola
+main: test.c pilaEnterosDinamica.o colaEnteros.o
+	gcc -o test test.c pilaEnterosDinamica.o colaEnteros.o -Wall -pedantic
+
+all: main pila cola
 	
 
 clean:
-	@- rm -f -v ejecutarColaEnteros
+	@- rm -f -v pilaEnterosDinamica.o
+	@- rm -f -v test
+	@- rm -f -v colaEnteros.o
