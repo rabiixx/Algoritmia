@@ -98,6 +98,16 @@ void cod2(tipoCola *c, char *str) {
 }
 
 /* Decode */
+void decode(cola *c, pila *p, char *str) {
 
+	
+	for (int i = 0; i < (str_len/2 + 1); ++i){
+		
+	}
+
+
+
+
+}
 // Inversa codificacion 2
 // Apliacar codificacion 1
