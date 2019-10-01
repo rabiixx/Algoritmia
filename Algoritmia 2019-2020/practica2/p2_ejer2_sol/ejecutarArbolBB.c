@@ -28,6 +28,7 @@ int main(){
 				borrar(&arbol,elem);
 				break;    
 			case 3: 
+				printf("Raiz: %d\n", devolverRaiz(arbol));
 				printf("Los elementos del arbol son:\n");
 				mostrarPreorden(arbol);
 				printf("\n");

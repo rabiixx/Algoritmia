@@ -1,11 +1,13 @@
 #include <stdbool.h>
 
  typedef int tipoElementoArbolBusqueda;
+
  typedef struct celdaABB{
 	 tipoElementoArbolBusqueda elem;
 	 struct celdaABB *izda;
 	 struct celdaABB *dcha;
  }celdaArbolBusqueda; 
+
 typedef celdaArbolBusqueda *tipoArbolBB;
 
 void nuevoArbolBB(tipoArbolBB *);
@@ -23,3 +25,7 @@ void mostrarInorden(tipoArbolBB);
 void mostrarPostorden(tipoArbolBB);
 
 bool esVacio(tipoArbolBB);
+
+bool esHoja(tipoArbolBB a); 
+
+tipoElementoArbolBusqueda devolverRaiz(tipoArbolBB);
