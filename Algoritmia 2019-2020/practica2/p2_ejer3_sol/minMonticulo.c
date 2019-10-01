@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "minMonticulo.h"
 
 
@@ -20,6 +21,9 @@ void nuevoMinMonticulo(tipoMinMonticulo *m, int numElem) {
 	m->arr = (tipoElementoMinMonticulo*)calloc(numElem, sizeof(tipoElementoMinMonticulo));
 	m->pos = 0;
 	m->numEl = 0;
+	for (int i = 0; i < numElem; ++i){
+		m->arr[i] = -1;
+	}
 }
 
 void errorMinMonticulo(char s[]){}
@@ -51,6 +55,51 @@ void eliminarElemento(tipoMinMonticulo *m, tipoElementoMinMonticulo auxElem) {
 		arr->pos = 2 * i + 2;
 
 	if()*/
+	/*for (int i = 0; i < m->numEl; ++i){
+		if (auxElem == m->arr[i]) {
+			m->pos = i;
+			if ( (m->arr[(2*i+1)] == INT_MIN) && (m->arr[(2*i+2)] == INT_MIN) ) {
+				m->arr[i] = INT_MIN;
+			} else if ( (m->arr[(2*i+1)] != INT_MIN) ) {
+				m->arr[i] = m->arr[(2*i+1)];
+				m->arr[(2*i+1)] = INT_MIN;
+			} else if (m->arr[(2*i+2)] != INT_MIN) {
+				m->arr[i] = m->arr[(2*i+2)];
+				m->arr[(2*i+2)] = INT_MIN;
+			} else {
+				if ( m->arr[(2*i+1)] > m->arr[(2*i+1)] )  {
+					m->arr[i] = m->arr[(2*i+1)];
+					m->arr[(2*i+1)] = INT_MIN;
+				} else {
+					m->arr[i] = m->arr[(2*i+2)];
+					m->arr[(2*i+2)] = INT_MIN;
+				}
+			}
+		}
+	}*/
+	printf("Numero elem1: %d\n", m->numEl);
+	m->numEl--;
+	printf("Numero elem2: %d\n", m->numEl);
+	m->arr[0] = m->arr[m->numEl];
+	m->arr[m->numEl] = -1;
+	mostrarAnchura(*m);
+	m->pos = 0;
+	printf("1\n");
+
+	while ( (m->arr[m->pos] > m->arr[2*(m->pos) + 1]) || (m->arr[m->pos] > m->arr[2*(m->pos) + 2]) ) {
+		printf("2\n");
+		if ( m->arr[2*m->pos + 1] <= m->arr[2*(m->pos) + 2]) {
+			printf("3\n");
+			swap(m, m->pos, 2*(m->pos) + 1);
+			m->pos = 2*(m->pos) + 1;
+		} else {
+			printf("4\n");
+			swap(m, m->pos, 2*(m->pos) + 2);
+			m->pos = 2*(m->pos) + 2;
+		}
+		mostrarAnchura(*m);
+
+	}
 
 
 }
@@ -60,6 +109,7 @@ tipoElementoMinMonticulo devolverRaiz(tipoMinMonticulo m) {
 }
 
 void mostrarAnchura(tipoMinMonticulo m) {
+	printf("anchura:");
 	for (int i = 0; i < m.numEl; ++i){
 		printf("%d, ", m.arr[i]);
 	}
