@@ -16,7 +16,12 @@ typedef celdaArbolBusqueda *tipoArbolBB;
 */
 
 void nuevoArbolBB(tipoArbolBB *a) {
-	a = NULL;
+	/*celdaArbolBusqueda *aux = (celdaArbolBusqueda*)malloc(sizeof(celdaArbolBusqueda));
+	aux->izda = NULL;
+	aux->dcha = NULL;
+	aux->elem = 10;
+	(*a) = aux;*/
+	*a = NULL;
 }
 
 void errorArbolBB(char s[]){}
@@ -29,29 +34,39 @@ void insertar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem) {
 	aux->elem = auxElem;
 
 	if ( esVacio(*a) ) {
-		printf("1\n");
-		a = &aux;
+		printf("raiz\n");
+		*a = aux;
 		/* (*a) = aux; */
-		printf("sankdjsa: %d\n", (*a)->elem);
 	} else if ((*a)->elem == aux->elem) {
 		printf("El valor ya se encuentra en el arbol");
 	} else if ((*a)->elem > aux->elem) {
+		printf("izq\n");
 		insertar(&(*a)->izda, auxElem);
 	} else if ((*a)->elem < aux->elem) {
 		insertar(&(*a)->dcha, auxElem);
+		printf("der\n");
 	}
 
 }
 
 void borrar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem){
+	printf("borrar\n");
 	if ( (*a)->elem > auxElem ) {
-		borrar(&(*a)->dcha, auxElem);
-	} else if ( (*a)->elem < auxElem ) {
+		printf("1\n");
 		borrar(&(*a)->izda, auxElem);
+	} else if ( (*a)->elem < auxElem ) {
+		printf("2\n");
+		borrar(&(*a)->dcha, auxElem);
 	} else if ( (*a)->elem == auxElem ) {
-		if ( esHoja(*a) )
-			free(a);
-		else if( (*a)->dcha && (*a)->izda ){
+		printf("3\n");
+		if ( esHoja(*a) ) {
+			printf("hoja\n");
+			free(*a);
+			*a = NULL;
+
+		} else if ( (*a)->dcha && (*a)->izda ){
+
+			printf("lasdmnjhasjdh\n");			
 			
 			tipoArbolBB *suc;
 			
@@ -66,24 +81,24 @@ void borrar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem){
 			borrar(&(*a)->dcha, (*suc)->elem);
 
 		} else if ( (*a)->dcha ) {
+			printf("1.2\n");
 			tipoArbolBB aux;			
-			a = &(*a)->dcha;
 			aux = (*a);
+			*a = (*a)->dcha;
 			free(aux);
 		} else if ( (*a)->izda ) {
-			tipoArbolBB aux;			
-			a = &(*a)->izda;
-			aux = *a;
+			printf("1.3\n");
+			tipoArbolBB aux;		
+			aux = *a;	
+			*a = (*a)->izda;
 			free(aux);
 		}
 	}
 }
 
 void mostrarPreorden(tipoArbolBB a) {
-	printf("joder1\n");
 	if(a != NULL){
-		printf("joder3\n");
-        printf("hola%d, ", a->elem);
+        printf("%d, ", a->elem);
         mostrarPreorden(a->izda);
         mostrarPreorden(a->dcha);
     } else {

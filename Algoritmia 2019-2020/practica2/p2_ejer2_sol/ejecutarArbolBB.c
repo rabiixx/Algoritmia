@@ -29,7 +29,7 @@ int main(){
 				break;    
 			case 3: 
 				printf("Raiz: %d\n", devolverRaiz(arbol));
-				printf("Los elementos del arbol son:\n");
+				printf("Los elementos del arbol son: ");
 				mostrarPreorden(arbol);
 				printf("\n");
 				break;
