@@ -33,6 +33,10 @@ int main(){
 				mostrarPreorden(arbol);
 				printf("\n");
 				break;
-		}
-	}while(opcion<4);
+			case 4:
+				printf("Inorden: ");
+				mostrarInorden(arbol);
+				printf("\n");
+		}	
+	}while(opcion<5);
 }

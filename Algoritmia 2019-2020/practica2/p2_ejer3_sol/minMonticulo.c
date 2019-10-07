@@ -77,30 +77,40 @@ void eliminarElemento(tipoMinMonticulo *m, tipoElementoMinMonticulo auxElem) {
 			}
 		}
 	}*/
-	printf("Numero elem1: %d\n", m->numEl);
-	m->numEl--;
-	printf("Numero elem2: %d\n", m->numEl);
-	m->arr[0] = m->arr[m->numEl];
-	m->arr[m->numEl] = -1;
-	mostrarAnchura(*m);
-	m->pos = 0;
-	printf("1\n");
 
-	while ( (m->arr[m->pos] > m->arr[2*(m->pos) + 1]) || (m->arr[m->pos] > m->arr[2*(m->pos) + 2]) ) {
-		printf("2\n");
-		if ( m->arr[2*m->pos + 1] <= m->arr[2*(m->pos) + 2]) {
-			printf("3\n");
-			swap(m, m->pos, 2*(m->pos) + 1);
-			m->pos = 2*(m->pos) + 1;
-		} else {
-			printf("4\n");
-			swap(m, m->pos, 2*(m->pos) + 2);
-			m->pos = 2*(m->pos) + 2;
-		}
-		mostrarAnchura(*m);
-
+	unsigned int i = 0;
+	while( (i < m->numEl) && (m->arr[i] != auxElem) ) {
+		++i;
 	}
 
+	if (i == m->numEl) {
+		printf("El elemento no se encuentra en el monticulo\n");
+		return;
+	} else {
+		printf("Numero elem1: %d\n", m->numEl);
+		m->numEl--;
+		printf("Numero elem2: %d\n", m->numEl);
+		m->arr[i] = m->arr[m->numEl];
+		m->arr[m->numEl] = -1;
+		mostrarAnchura(*m);
+		m->pos = i;
+		printf("1\n");
+
+		while ( (m->arr[m->pos] > m->arr[2*(m->pos) + 1]) || (m->arr[m->pos] > m->arr[2*(m->pos) + 2]) ) {
+			printf("2\n");
+			if ( m->arr[2*m->pos + 1] <= m->arr[2*(m->pos) + 2]) {
+				printf("3\n");
+				swap(m, m->pos, 2*(m->pos) + 1);
+				m->pos = 2*(m->pos) + 1;
+			} else {
+				printf("4\n");
+				swap(m, m->pos, 2*(m->pos) + 2);
+				m->pos = 2*(m->pos) + 2;
+			}
+			mostrarAnchura(*m);
+
+		}
+	}
 
 }
 
