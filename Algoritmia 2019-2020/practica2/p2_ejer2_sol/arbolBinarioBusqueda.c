@@ -28,15 +28,13 @@ void errorArbolBB(char s[]){}
 
 void insertar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem) {
 	
-	celdaArbolBusqueda *aux = (celdaArbolBusqueda*)malloc(sizeof(celdaArbolBusqueda));
-	aux->izda = NULL;
-	aux->dcha = NULL;
-	aux->elem = auxElem;
 
 	if ( esVacio(*a) ) {
-		printf("raiz\n");
+		celdaArbolBusqueda *aux = (celdaArbolBusqueda*)malloc(sizeof(celdaArbolBusqueda));
+		aux->izda = NULL;
+		aux->dcha = NULL;
+		aux->elem = auxElem;
 		*a = aux;
-		/* (*a) = aux; */
 	} else if ((*a)->elem == aux->elem) {
 		printf("El valor ya se encuentra en el arbol");
 	} else if ((*a)->elem > aux->elem) {

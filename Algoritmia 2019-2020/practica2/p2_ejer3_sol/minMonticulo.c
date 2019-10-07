@@ -22,7 +22,7 @@ void nuevoMinMonticulo(tipoMinMonticulo *m, int numElem) {
 	m->pos = 0;
 	m->numEl = 0;
 	for (int i = 0; i < numElem; ++i){
-		m->arr[i] = -1;
+		m->arr[i] = INT_MAX;
 	}
 }
 
@@ -91,13 +91,13 @@ void eliminarElemento(tipoMinMonticulo *m, tipoElementoMinMonticulo auxElem) {
 		m->numEl--;
 		printf("Numero elem2: %d\n", m->numEl);
 		m->arr[i] = m->arr[m->numEl];
-		m->arr[m->numEl] = -1;
+		m->arr[m->numEl] = INT_MAX;
 		mostrarAnchura(*m);
 		m->pos = i;
 		printf("1\n");
 
 		while ( (m->arr[m->pos] > m->arr[2*(m->pos) + 1]) || (m->arr[m->pos] > m->arr[2*(m->pos) + 2]) ) {
-			printf("2\n");
+			printf("\n2\n");
 			if ( m->arr[2*m->pos + 1] <= m->arr[2*(m->pos) + 2]) {
 				printf("3\n");
 				swap(m, m->pos, 2*(m->pos) + 1);
@@ -107,6 +107,10 @@ void eliminarElemento(tipoMinMonticulo *m, tipoElementoMinMonticulo auxElem) {
 				swap(m, m->pos, 2*(m->pos) + 2);
 				m->pos = 2*(m->pos) + 2;
 			}
+			printf("POSICION: %d\n", m->pos);
+			printf("POSc: %d\n", m->arr[m->pos]);
+			printf("POSi: %d\n", m->arr[2*(m->pos) + 1]);
+			printf("POSd: %d\n", m->arr[2*(m->pos) + 2]);
 			mostrarAnchura(*m);
 
 		}
@@ -126,11 +130,12 @@ void mostrarAnchura(tipoMinMonticulo m) {
 }
 
 bool esVacio(tipoMinMonticulo m) {
-
+	return (m->numEl == 0) ? true:false; 
 }
 
 bool estaLleno(tipoMinMonticulo m) {
-	//return (m.numEl == )?
+	size_t = sizeof(m->arr)
+	return (m.numEl == )?
 }
 
 
