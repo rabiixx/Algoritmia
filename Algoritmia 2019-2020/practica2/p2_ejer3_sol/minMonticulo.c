@@ -130,12 +130,11 @@ void mostrarAnchura(tipoMinMonticulo m) {
 }
 
 bool esVacio(tipoMinMonticulo m) {
-	return (m->numEl == 0) ? true:false; 
+	return (m.numEl == 0) ? true:false; 
 }
 
 bool estaLleno(tipoMinMonticulo m) {
-	size_t = sizeof(m->arr)
-	return (m.numEl == )?
+	
 }
 
 
