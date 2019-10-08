@@ -8,6 +8,8 @@ int searchIndex(tipoElementoArbolBin in[], int low, int high, int elem );
 
 int main(int argc, char const *argv[]) {
 	
+	system("clear");
+
 	unsigned int N;
 	printf("Introduce el numero de elementos: ");
 	scanf("%u", &N);
@@ -24,7 +26,6 @@ int main(int argc, char const *argv[]) {
 	for (int i = 0; i < N; ++i){
 		scanf("%d", &arrIn[i]);
 	}
-
 
 	tipoArbolBin a;
 	nuevoArbolBin(&a);
@@ -47,19 +48,20 @@ tipoArbolBin abeto_recursivo(int arrPre[], int arrIn[], int low_index, int high_
 	if (low_index > high_index) 
 		return NULL;
 
-	tipoArbolBin arbol;
-	nuevoArbolBin(&arbol);
-
 	/* El nodo padre no tiene ningun hijo */
 	if (low_index == high_index )
-		return construir(arrPre[(*preIndex)++], NULL, NULL);
+		return construir(arrPre[(*preIndex++)], NULL, NULL);
 
 	int index = searchIndex(arrIn, low_index, high_index, arrPre[(*preIndex)]);
+
+	(*preIndex)++;
 
 	tipoArbolBin aux1 =	abeto_recursivo(arrPre, arrIn, low_index, index -1, preIndex);
 	tipoArbolBin aux2 = abeto_recursivo(arrPre, arrIn, index + 1, high_index, preIndex);
 
-	return construir(arrPre[(*preIndex)++], aux1, aux2);
+	
+
+	return construir(arrPre[(*preIndex)], aux1, aux2);
 
 }
 
@@ -68,7 +70,9 @@ tipoArbolBin abeto_recursivo(int arrPre[], int arrIn[], int low_index, int high_
 
 /* Busca el indice de elem en el array de inroden */
 int searchIndex(tipoElementoArbolBin in[], int low, int high, int elem ) {
-	for (int i = low; i < high; ++i){
+
+	for (int i = low; i <= high; ++i){
+		printf("hack %d\n", i);
 		if (in[i] == elem)
 			return i;
 	}
