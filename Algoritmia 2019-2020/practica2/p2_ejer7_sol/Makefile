@@ -7,5 +7,5 @@ main: ejecutarArbolBin.c arbolBin.o
 all: lib main
 
 clean:
-	@- rm -f -v ejecutarColaDobleCaracteres
-	@- rm -f -v colaDobleCaracteres.o
+	@- rm -f -v p2_ejer7_sol
+	@- rm -f -v arbolBin.o
