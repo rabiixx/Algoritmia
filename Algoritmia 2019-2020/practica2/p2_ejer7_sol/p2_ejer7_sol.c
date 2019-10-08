@@ -2,71 +2,78 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct _elem{
+typedef int tipoElementoArbolBin;
+typedef struct celdaABin{
+	 tipoElementoArbolBin elem;
+	 struct celdaABin *izda;
+	 struct celdaABin *dcha;
+ }celdaArbolBin; 
+typedef celdaArbolBin *tipoArbolBin;
+
+
+
+
+
+int main(int argc, char const *argv[]) {
 	
-
-
-}celda;
-
-
-
-int main(int argc, char const *argv[])
-{
-
-
 	unsigned int N;
-	printf("Introduce el numero de elementos: %d\n");
+	printf("Introduce el numero de elementos: ");
 	scanf("%d", &N);
 
-	int *pre = (int*)malloc(sizeof(int)*N);
-	int *in = (int*)malloc(sizeof(int)*N);
+	int arrPre[N];
+	int arrIn[N];
 
-	printf("Introduce preorden: ");
+	printf("Introduce Preorden: ");
 	for (int i = 0; i < N; ++i){
-		scanf("%d", pre[i]);
+		scanf("%d", &arrPre[i])
 	}
-
-	printf("Introduce inorden: ");
-	for (int i = 0; i < N; ++i){
-		scanf("%d", in[i]);
-	}
-
-	/* Busqueda de a raiz */
-	unsigned int raiz_index;
-	unsigned int i = 0;
-	while ( (i < N) && (pre[0] != in[i]) ) {
-		++i;
-	}	
-	if(pre[0] == in[i]) {
-		raiz_index = i;
-		insertar(arbol, pre[0]);
-	}
-
-	free(&i);
-
-	/* Contruccion del arbol */
-	for (int j = 1; j < N; ++j)	{
-		for (int i = 0; i < N; ++i) {
-			if ( (pre[j] == in[i]) && (i < raiz_index) )
-				insertar(arbol, NULL, pre[i]);
-					for (int i = j+1; i < N; ++i){
-						for (int k = raiz; k < N; ++k){
-							if (pre[j] == in[k])
-								insertar()
-						}
 	
-			else
-				insertar(arbol, pre[i], NULL);
-		}
-
-
-
+	printf("Introduce Inorden: ");
+	for (int i = 0; i < N; ++i){
+		scanf("%d", &arrIn[i])
 	}
 
 
-
+	int preIndex = 0;	/* Guarda el indice del array en Preorden */
+	abeto_recursivo(arrPre, arrIn, 0, N - 1, &preIndex);
 
 	return 0;
-	
 }
 
+
+
+tipoArbolBin abeto_recursivo(arrPre[], arrIn[], int low_index, int high_index, int *preIndex) {
+
+	/* Caso1: No tiene hijo derecho o hijo izquierdo */
+	if (low_index > high_index) 
+		return NULL;
+
+	tipoArbolBin arbol;
+	nuevoArbolBin(&arbol);
+
+	/* El nodo padre no tiene ningun hijo */
+	if (low_index == high_index )
+		return construir(arrPre[preIndex++], NULL, NULL);
+
+	index = search(arrIn, low_index, high_index, arrPre[low_index]);
+
+	tipoArbolBin aux1 =	abeto_recursivo(arrPre, arrIn, low_index, index -1);
+	tipoArbolBin aux2 = abeto_recursivo(arrPre, arrIn, low_index, index + 1, high_index);
+
+	return construir(arrPre[preIndex++], aux1, aux2);
+
+}
+
+
+
+
+/* Busca el indice de elem en el array de inroden */
+int searchIndex(tipoElementoArbolBin in[], int low, int high, int elem ) {
+	for (int i = low; i < high; ++i){
+		if (in[i] == elem)
+			return i;
+	}
+
+	printf("[+] El elemento %d no se encuentra en el inorden.\n", elem);
+	exit(1);
+}
