@@ -26,50 +26,82 @@
 #include <string.h>
 #include <stdbool.h>
 #include "arbolBin.h"
-#include "pilaEnterosDinamica.h"
+//#include "pilaEnterosDinamica.h"
 
 #define MAX_STR 100 /* Maximum string elements */
 
 /* Util functions */
 bool esOperador(char c);
 
+typedef struct celdaP{
+	char val;
+	struct celdaP *sig;
+	struct celdaABin *head;
+}celdaPila;
 
+typedef celdaPila *tipoPila;
+
+void nuevaPila(tipoPila *p) {
+	(*p) = NULL;
+}
+
+
+tipoArbolBin devArbol(tipoPila p) {
+	return p->head;
+}
+
+
+void apilar(tipoPila *p, tipoElementoArbolBin auxElem) {
+	
+	celdaPila *auxP = (celdaPila*)malloc(sizeof(celdaPila));
+	celdaArbolBin *auxA = (celdaArbolBin*)malloc(sizeof(celdaArbolBin));
+	
+	auxA->elem = auxElem;
+	auxA->izda = NULL;
+	auxA->dcha = NULL;
+
+	auxP->val = auxElem;
+	auxP->head = auxA;
+	auxP->sig = *p;
+	
+	*p = auxP;
+}
 
 int main(int argc, char const *argv[])
 {
-	
+
 	tipoPila pila;
 	nuevaPila(&pila);
+
+	tipoArbolBin arbol;
+	nuevoArbolBin(&arbol);
+
 
 	char *str = (char*)calloc(100, sizeof(char));
 	printf("Introduce la operacion en notacion postija, sin espacios: ");
 	scanf("%s", str);
 
-	for (int i = 0; i < strlen(str); ++i){
-		if ( !esOperador(str[i]) ) {
-			apilar(&pila);
-		} else {
-			tipoArbolBin aux;
-			nuevoArbolBin(&aux);
-
-			while ( !esVacia(pila) ) {
-				tipoArbolBin izq;
-				nuevoArbolBin
-
-
-			}
-
-
-		}
-
-
+	for (int i = 0; i < ; ++i)
+	{
+		/* code */
 	}
 
+	int i = 0;		
+	while ( !esOperador(str[i]) )
+		apilar(&pila, str[i]);
+		
 
+	tipoArbolBin der = devArbol(pila);
+	tipoArbolBin izq = devArbol(pila);
+	arbol = construir(str[i], izq, der);
+
+	printf("Inorden: ");
+	inorden(arbol);
 
 	return 0;
 }
 
 bool esOperador(char c) {
-	return if (c == '+' || c == '-' || c == '*' || c == '/' ) ? true:false;
+	return (c == '+' || c == '-' || c == '*' || c == '/' ) ? true:false;
 }
+

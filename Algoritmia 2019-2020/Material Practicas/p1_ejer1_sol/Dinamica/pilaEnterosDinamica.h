@@ -23,7 +23,7 @@ typedef celdaPila* tipoPila;
 
 void nuevaPila(tipoPila *);
 
-void apilar(tipoPila *, tipoElementoPila);
+void apilar(tipoPila* , tipoElementoPila);
 
 void desapilar(tipoPila *);
 

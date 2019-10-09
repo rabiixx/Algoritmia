@@ -28,8 +28,8 @@ void apilar(tipoPila *p, tipoElementoPila elemento){
 	celdaPila *nuevo;
 	nuevo=(celdaPila*)malloc(sizeof(celdaPila));
 	nuevo->elem=elemento;
-	nuevo->sig=*p;
-	*p=nuevo;
+	nuevo->sig = *p;
+	*p = nuevo;
 }
 
 void desapilar(tipoPila *p){

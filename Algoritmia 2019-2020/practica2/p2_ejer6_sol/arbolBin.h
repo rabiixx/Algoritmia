@@ -1,11 +1,13 @@
 #include <stdbool.h>
 
-typedef int tipoElementoArbolBin;
+typedef char tipoElementoArbolBin;
+
 typedef struct celdaABin{
 	 tipoElementoArbolBin elem;
 	 struct celdaABin *izda;
 	 struct celdaABin *dcha;
  }celdaArbolBin; 
+
 typedef celdaArbolBin *tipoArbolBin;
 
 void nuevoArbolBin(tipoArbolBin *);
