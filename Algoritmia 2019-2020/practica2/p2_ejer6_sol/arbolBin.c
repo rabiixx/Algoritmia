@@ -39,7 +39,7 @@ void preorden(tipoArbolBin a) {
 void inorden(tipoArbolBin a) {
 	if(a){
         inorden(a->izda);
-        printf("%d, ", a->elem);
+        printf("%c, ", a->elem);
         inorden(a->dcha);
     }else{
         return;

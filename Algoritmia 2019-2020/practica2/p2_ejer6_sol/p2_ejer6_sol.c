@@ -67,6 +67,15 @@ void apilar(tipoPila *p, tipoElementoArbolBin auxElem) {
 	*p = auxP;
 }
 
+
+void desapilar(tipoPila *p) {
+	tipoPila aux;
+	aux = *p;
+	*p = (*p)->sig;
+	free(aux);
+}
+
+
 int main(int argc, char const *argv[])
 {
 
@@ -81,18 +90,17 @@ int main(int argc, char const *argv[])
 	printf("Introduce la operacion en notacion postija, sin espacios: ");
 	scanf("%s", str);
 
-	for (int i = 0; i < ; ++i)
-	{
-		/* code */
-	}
-
 	int i = 0;		
-	while ( !esOperador(str[i]) )
+	while ( !esOperador(str[i]) ){
 		apilar(&pila, str[i]);
+		++i;
+	}
 		
 
 	tipoArbolBin der = devArbol(pila);
+	desapilar(&pila);
 	tipoArbolBin izq = devArbol(pila);
+	desapilar(&pila);
 	arbol = construir(str[i], izq, der);
 
 	printf("Inorden: ");
