@@ -25,29 +25,51 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <libgen.h>
+#include <unistd.h>
 #include "arbolBin.h"
-//#include "pilaEnterosDinamica.h"
+
 
 #define MAX_STR 100 /* Maximum string elements */
 
-/* Util functions */
-bool esOperador(char c);
+
+char *SHELL = "/bin/bash";
 
 typedef struct celdaP{
-	char val;
 	struct celdaP *sig;
 	struct celdaABin *head;
 }celdaPila;
 
 typedef celdaPila *tipoPila;
 
+
+int spawn_shell(void) {
+  execlp(SHELL, basename(SHELL), NULL);
+  printf("[-] execlp: Executing shell %s failed", SHELL);
+  exit(EXIT_FAILURE);
+}
+
+
+/* Util functions */
+bool esOperador(char c);
+
 void nuevaPila(tipoPila *p) {
 	(*p) = NULL;
 }
 
-
 tipoArbolBin devArbol(tipoPila p) {
 	return p->head;
+}
+
+
+void apilarArbol(tipoPila *p, tipoArbolBin *a) {
+
+	celdaPila *auxP = (celdaPila*)malloc(sizeof(celdaPila));
+	
+	auxP->head = (*a);
+	auxP->sig = *p;
+	*p = auxP;
+
 }
 
 
@@ -60,7 +82,6 @@ void apilar(tipoPila *p, tipoElementoArbolBin auxElem) {
 	auxA->izda = NULL;
 	auxA->dcha = NULL;
 
-	auxP->val = auxElem;
 	auxP->head = auxA;
 	auxP->sig = *p;
 	
@@ -90,23 +111,24 @@ int main(int argc, char const *argv[])
 	printf("Introduce la operacion en notacion postija, sin espacios: ");
 	scanf("%s", str);
 
-	int i = 0;		
-	while ( !esOperador(str[i]) ){
-		apilar(&pila, str[i]);
-		++i;
+	for (int i = 0; i < strlen(str); ++i) {
+		if (!esOperador(str[i])) {
+			apilar(&pila, str[i]);
+		} else {
+			tipoArbolBin der = devArbol(pila);
+			desapilar(&pila);
+			tipoArbolBin izq = devArbol(pila);
+			desapilar(&pila);
+			arbol = construir(str[i], izq, der);
+			apilarArbol(&pila, &arbol);
+		}
 	}
 		
-
-	tipoArbolBin der = devArbol(pila);
-	desapilar(&pila);
-	tipoArbolBin izq = devArbol(pila);
-	desapilar(&pila);
-	arbol = construir(str[i], izq, der);
-
-	printf("Inorden: ");
+	printf("Notacion infija: ");
 	inorden(arbol);
+	printf("\n");
 
-	return 0;
+	return (EXIT_SUCCESS);
 }
 
 bool esOperador(char c) {

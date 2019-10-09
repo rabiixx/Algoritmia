@@ -38,16 +38,18 @@ void preorden(tipoArbolBin a) {
 
 void inorden(tipoArbolBin a) {
 	if(a){
+        printf("(");
         inorden(a->izda);
-        printf("%c, ", a->elem);
+        printf("%c", a->elem);
         inorden(a->dcha);
+        printf(")");
     }else{
         return;
     }
 }
 
 void postorden(tipoArbolBin a) {
-	    if(a){
+    if(a){
         postorden(a->izda);
         postorden(a->dcha);
         printf("%d, ", a->elem);
