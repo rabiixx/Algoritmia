@@ -50,13 +50,14 @@ void insertar(celda **a, int valor){
           if((valor < (*a)->num) && ((*a)->izda))
                    insertarRec(&((*a)->izda), valor);
                    (*a)->izda = aux;
-          if(valor > (*a)->num) && ((*a)->dcha))
+          if((valor > (*a)->num) && ((*a)->dcha))
                    insertarRec(&((*a)->dcha), valor);
                    (*a)->dcha = aux;
           if(valor == (*a)->num)
                    (*a)->centro == aux;
           
-          
+    }   
+}
 /*Nota: cualquier nodo del centro(menos el primero) no tiene hijo izq ni der*/
         void  mostrar(celda *a){
               int cont = 0; /*Cuenta el numero de nodos repetidos*/
@@ -75,7 +76,7 @@ void insertar(celda **a, int valor){
           void imprimir_suc_pre(celda *a, int valor)
                buscar(a, valor);
                if(esHoja(a))
-                             print("El nodo no tiene hijo izquierdo y derecho
+                             print("El nodo no tiene hijo izquierdo y derecho")
                else{
                     celda *aux1  = sucesor((*a)->der);
                     celda *aux2 = antecesor((*a)->izq);
@@ -105,6 +106,6 @@ void insertar(celda **a, int valor){
                         }
           void esHoja(celda *a){
                return !a->izda && !a->dcha;
-               }
+            }
      
      
