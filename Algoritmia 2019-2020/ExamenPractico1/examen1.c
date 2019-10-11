@@ -1,5 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 typedef int tipoElementoArbol;
 
@@ -26,23 +27,26 @@ tipoArbol buscar(tipoArbol a, tipoElementoArbol auxElem);
 int main(int argc, char const *argv[]) {
 
 	system("clear");
-	
+
+
 	tipoArbol arbol;
 	nuevoArbol(&arbol);
 
-	insertar(&arbol, 10);
-	insertar(&arbol, 7);
-	insertar(&arbol, 4);
-	insertar(&arbol, 5);
-	insertar(&arbol, 5);		
-	insertar(&arbol, 11);
-	insertar(&arbol, 8);
-	insertar(&arbol, 4);
-	insertar(&arbol, 4);
-	insertar(&arbol, 8);
-	insertar(&arbol, 8);
-	insertar(&arbol, 8);
-	insertar(&arbol, 6);
+	clock_t start, end;
+
+	start = clock();
+
+	insertar(&arbol, 50); 
+	insertar(&arbol, 30); 
+	insertar(&arbol, 20); 
+	insertar(&arbol, 40); 
+	insertar(&arbol, 70); 
+	insertar(&arbol, 60); 
+	insertar(&arbol, 80);
+	
+	end = clock();
+
+	printf("Done. Took %f seconds\n\n", (double) (end - start) / CLOCKS_PER_SEC);
 
 
 	printf("[+] Inorden: ");
@@ -57,35 +61,29 @@ int main(int argc, char const *argv[]) {
 	printf("[+] Mostrar: \n");
 	mostrar(arbol, &cont);
 
-	imprimir_suc_pre(arbol, 7);
+	imprimir_suc_pre(arbol, 20);
 
 
 	exit(EXIT_SUCCESS);
 }
 
-
 void mostrar(tipoArbol a, int *cont ) {
 	if (a) {
 		mostrar(a->izq, cont);
-		
 		if (a->cen) {
 			++(*cont);
 			mostrar(a->cen, cont);
 		}
-
-		if (*cont > 0){ 
+		if (*cont > 0){
 			printf("\t[+] El elemento %d aparece repetido %d veces\n", a->elem, (*cont));
 			*cont = 0;
 		}
 		mostrar(a->der, cont);
 	} else { 
-
 		return;
 	}
+
 }
-
-
-
 
 void nuevoArbol(tipoArbol *a) {
 	(*a) = NULL;
@@ -134,13 +132,10 @@ void mostrarPreorden(tipoArbol a) {
     }
 }
 
-void imprimir_suc_pre(tipoArbol arbol, tipoElementoArbol auxElem	) {
+void imprimir_suc_pre(tipoArbol arbol, tipoElementoArbol auxElem) {
 
 	tipoArbol a = buscar(arbol, auxElem);
 
-	mostrarPreorden(a);
-
-	printf("1\n");
 	if ( (a->der) && (a->izq) ) {
 		tipoArbol aux1 = sucesor(a->der);
 		tipoArbol aux2 = antecesor(a->izq);
@@ -161,25 +156,23 @@ void imprimir_suc_pre(tipoArbol arbol, tipoElementoArbol auxElem	) {
 
 
 tipoArbol sucesor(tipoArbol a) {
-	printf("hola1\n");
-	if (a) 
+	if (a->izq){ 
 		sucesor(a->izq);
-	else
+	} else {
 		return a;
+	}
 }
 
 tipoArbol antecesor(tipoArbol a) {
-	printf("hola2\n");
-	if (a) 
-		sucesor(a->der);
+	if (a->der) 
+		antecesor(a->der);
 	else
 		return a;
 }
 
+
 tipoArbol buscar(tipoArbol a, tipoElementoArbol auxElem) {
 
-
-	printf("fldsfm\n");
 	if(a->elem == auxElem)
 		return a;
 	else if (auxElem < a->elem)
@@ -187,20 +180,3 @@ tipoArbol buscar(tipoArbol a, tipoElementoArbol auxElem) {
 	else if (auxElem > a->elem)
 		buscar(a->der, auxElem);
 }
-
-
-        /*         
-  celda* buscar(celda *a, int valor){
-       if(valor < a->num)
-                buscar(a->izda);
-       if(valor > a->num)
-                buscar(a->dcha);
-       if(valor == a->num)
-                return a;
-                }
-  void esHoja(celda *a){
-       return !a->izda && !a->dcha;
-    }
-     
-     
-*/
