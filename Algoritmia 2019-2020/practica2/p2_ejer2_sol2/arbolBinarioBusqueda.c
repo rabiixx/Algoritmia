@@ -37,7 +37,7 @@ void insertar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem) {
 		(*a)->elem = auxElem;
 
 	} else if ((*a)->elem == auxElem) {
-		printf("El valor ya se encuentra en el arbol");
+		printf("El valor ya se encuentra en el arbol\n");
 	} else if ((*a)->elem > auxElem) {
 		insertar(&(*a)->izda, auxElem);
 	} else if ((*a)->elem < auxElem) {
@@ -47,19 +47,15 @@ void insertar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem) {
 }
 
 void borrar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem){
-	printf("borrar\n");
 	if ( (*a)->elem > auxElem ) {
 		printf("1\n");
 		borrar(&(*a)->izda, auxElem);
 	} else if ( (*a)->elem < auxElem ) {
-		printf("2\n");
 		borrar(&(*a)->dcha, auxElem);
 	} else if ( (*a)->elem == auxElem ) {
-		printf("3\n");
 		if ( esHoja(*a) ) {
 			free(*a);
 			*a = NULL;
-
 		} else if ( (*a)->dcha && (*a)->izda ){
 			
 			tipoArbolBB *suc;
@@ -75,15 +71,11 @@ void borrar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem){
 			borrar(&(*a)->dcha, (*suc)->elem);
 
 		} else if ( (*a)->dcha ) {
-			printf("1.2\n");
-			tipoArbolBB aux;			
-			aux = (*a);
+			tipoArbolBB aux = (*a);
 			*a = (*a)->dcha;
 			free(aux);
 		} else if ( (*a)->izda ) {
-			printf("1.3\n");
-			tipoArbolBB aux;		
-			aux = *a;	
+			tipoArbolBB aux = *a;	
 			*a = (*a)->izda;
 			free(aux);
 		}
