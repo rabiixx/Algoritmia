@@ -13,8 +13,7 @@ int main(){
 		printf("1 - Insertar un elemento en el arbol\n");
 		printf("2 - Eliminar un elemento del arbol\n");
 		printf("3 - Mostrar el arbol en preorden\n");
-		printf("4 - Mostrar el arbol en inorden\n");
-		printf("5 - Salir\n");
+		printf("4 - Salir.\n");
 		printf("Escoja una opcion: ");
 		scanf("%d",&opcion);
 		switch(opcion){           
@@ -38,11 +37,6 @@ int main(){
 				printf("Inorden: ");
 				mostrarInorden(arbol);
 				printf("\n");
-			case 5: 	
-				return  EXIT_SUCCESSS;
 		}	
 	}while(opcion<5);
-
-	return  EXIT_SUCCESSS;
-
 }

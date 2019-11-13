@@ -30,17 +30,17 @@ void insertar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem) {
 	
 
 	if ( esVacio(*a) ) {
-		celdaArbolBusqueda *aux = (celdaArbolBusqueda*)malloc(sizeof(celdaArbolBusqueda));
-		aux->izda = NULL;
-		aux->dcha = NULL;
-		aux->elem = auxElem;
-		*a = aux;
 
-	} else if ((*a)->elem == aux->elem) {
+		*a = (celdaArbolBusqueda*)malloc(sizeof(celdaArbolBusqueda));
+		(*a)->izda = NULL;
+		(*a)->dcha = NULL;
+		(*a)->elem = auxElem;
+
+	} else if ((*a)->elem == auxElem) {
 		printf("El valor ya se encuentra en el arbol");
-	} else if ((*a)->elem > aux->elem) {
+	} else if ((*a)->elem > auxElem) {
 		insertar(&(*a)->izda, auxElem);
-	} else if ((*a)->elem < aux->elem) {
+	} else if ((*a)->elem < auxElem) {
 		insertar(&(*a)->dcha, auxElem);
 	}
 
