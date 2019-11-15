@@ -35,3 +35,7 @@ int calcAlturaArbol(tipoArbolBB a);
 int contarNodos(tipoArbolBB a);
 
 unsigned int getfullCount(tipoArbolBB a);
+
+void borrarArbol(tipoArbolBB *a);
+
+bool buscarNodo(tipoArbolBB, int);

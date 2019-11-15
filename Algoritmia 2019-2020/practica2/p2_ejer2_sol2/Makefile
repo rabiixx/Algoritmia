@@ -7,5 +7,5 @@ main: ejecutarArbolBB.c arbolBinarioBusqueda.o
 all: lib main
 
 clean:
-	@- rm -f -v ejecutarColaDobleCaracteres
-	@- rm -f -v colaDobleCaracteres.o
+	@- rm -f -v ejecutarArbolBB
+	@- rm -f -v arbolBinarioBusqueda.o

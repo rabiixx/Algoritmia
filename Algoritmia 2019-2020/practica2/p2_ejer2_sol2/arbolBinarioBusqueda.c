@@ -4,23 +4,7 @@
 #include "arbolBinarioBusqueda.h"
 #include <assert.h>
 
- /*typedef int tipoElementoArbolBusqueda;
-
- typedef struct celdaABB{
-	 tipoElementoArbolBusqueda elem;
-	 struct celdaABB *izda;
-	 struct celdaABB *dcha;
- }celdaArbolBusqueda; 
-
-typedef celdaArbolBusqueda *tipoArbolBB;
-*/
-
 void nuevoArbolBB(tipoArbolBB *a) {
-	/*celdaArbolBusqueda *aux = (celdaArbolBusqueda*)malloc(sizeof(celdaArbolBusqueda));
-	aux->izda = NULL;
-	aux->dcha = NULL;
-	aux->elem = 10;
-	(*a) = aux;*/
 	*a = NULL;
 }
 
@@ -28,7 +12,6 @@ void errorArbolBB(char s[]){}
 
 void insertar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem) {
 	
-
 	if ( esVacio(*a) ) {
 
 		*a = (celdaArbolBusqueda*)malloc(sizeof(celdaArbolBusqueda));
@@ -83,7 +66,7 @@ void borrar(tipoArbolBB *a, tipoElementoArbolBusqueda auxElem){
 }
 
 void mostrarPreorden(tipoArbolBB a) {
-	if(a != NULL){
+	if (a) {
         printf("%d, ", a->elem);
         mostrarPreorden(a->izda);
         mostrarPreorden(a->dcha);
@@ -93,21 +76,21 @@ void mostrarPreorden(tipoArbolBB a) {
 }
 
 void mostrarInorden(tipoArbolBB a){
-	if(a){
+	if (a) {
         mostrarInorden(a->izda);
         printf("%d, ", a->elem);
         mostrarInorden(a->dcha);
-    }else{
+    } else {
         return;
     }
 }
 
 void mostrarPostorden(tipoArbolBB a){
-	if(a){
+	if (a) {
         mostrarPostorden(a->izda);
         mostrarPostorden(a->dcha);
         printf("%d, ", a->elem);
-    }else{
+    } else {
         return;
     }
 }
@@ -122,7 +105,8 @@ bool esHoja(tipoArbolBB a) {
 }
 
 tipoElementoArbolBusqueda devolverRaiz(tipoArbolBB a) {
-	return a->elem;
+	if (a)
+		return a->elem;
 }
 
 int calcAlturaArbol(tipoArbolBB a) {
@@ -145,7 +129,7 @@ int contarNodos(tipoArbolBB a) {
 
 	return (contIzq + contDer + 1);
 
-	return (contarNodos(a->izda) + contarNodos(a->dcha))
+	/*return (contarNodos(a->izda) + contarNodos(a->dcha))*/
 
 }
 
@@ -163,3 +147,41 @@ unsigned int getfullCount(tipoArbolBB a)
             getfullCount(a->dcha)); 
     return res; 
 } 
+
+
+/* Comprueba si dos arboles son iguales */
+bool comprArbolesIguales(tipoArbolBB a, tipoArbolBB b) {
+
+	if ( !a && !b ) {
+		return true;
+	}
+
+	return ( (a->elem == b->elem) && comprArbolesIguales(a->izda, b->izda) && comprArbolesIguales(a->dcha, b->dcha) );
+}
+
+
+/* Borra el arbol por completo */
+void borrarArbol(tipoArbolBB *a) {
+
+	if ( !(*a) ) 
+		return;
+
+	borrarArbol(&(*a)->izda);
+	borrarArbol(&(*a)->dcha);
+
+	free(*a);
+	*a = NULL;
+}
+
+bool buscarNodo(tipoArbolBB a, int auxElem) {
+
+	if ( !a ) return false;
+
+	if (auxElem == a->elem)
+		return true;
+	else if (auxElem > a->elem)
+		return buscarNodo(a->izda, auxElem);
+	else if (auxElem < a->elem)
+		return buscarNodo(a->dcha, auxElem);
+
+}
