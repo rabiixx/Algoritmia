@@ -1,5 +1,5 @@
 lib: arbolBinarioBusqueda.c
-	gcc -c arbolBinarioBusqueda.c
+	gcc -g -c arbolBinarioBusqueda.c
 
 main: ejecutarArbolBB.c arbolBinarioBusqueda.o
 	gcc -g -o  ejecutarArbolBB ejecutarArbolBB.c arbolBinarioBusqueda.o -Wall -pedantic

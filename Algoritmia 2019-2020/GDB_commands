@@ -1,0 +1,8 @@
+GDB
+Enter Interface: CTRL+X+A
+Load file: file ejecutable
+n: sigueinte instruccion
+s: entrar dentro de la funcion a la que se llama
+p variable: imprimir valor de la variable
+p (cast) variables: castear valor de la variable
+x: examine memory address
