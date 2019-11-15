@@ -4,23 +4,7 @@
 #include "arbolBinarioBusqueda.h"
 
 
- /*typedef int tipoElementoArbolBusqueda;
-
- typedef struct celdaABB{
-	 tipoElementoArbolBusqueda elem;
-	 struct celdaABB *izda;
-	 struct celdaABB *dcha;
- }celdaArbolBusqueda; 
-
-typedef celdaArbolBusqueda *tipoArbolBB;
-*/
-
 void nuevoArbolBB(tipoArbolBB *a) {
-	/*celdaArbolBusqueda *aux = (celdaArbolBusqueda*)malloc(sizeof(celdaArbolBusqueda));
-	aux->izda = NULL;
-	aux->dcha = NULL;
-	aux->elem = 10;
-	(*a) = aux;*/
 	*a = NULL;
 }
 
@@ -131,4 +115,22 @@ bool esHoja(tipoArbolBB a) {
 
 tipoElementoArbolBusqueda devolverRaiz(tipoArbolBB a) {
 	return a->elem;
+}
+
+
+int calcAlturaArbol(tipoArbolBB a, int auxAltura) {
+	
+	int *altura = 0;
+
+	if( !a ) {
+		if (auxAltura > altura)
+			*altura = auxAltura;
+		return;
+	} else {
+		calcAlturaArbol(a->izda, ++a);
+		calcAlturaArbol(a->dcha, ++a);
+	}
+
+	return (*altura);
+
 }

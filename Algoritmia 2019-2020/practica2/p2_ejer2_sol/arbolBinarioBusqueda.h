@@ -29,3 +29,5 @@ bool esVacio(tipoArbolBB);
 bool esHoja(tipoArbolBB a); 
 
 tipoElementoArbolBusqueda devolverRaiz(tipoArbolBB);
+
+int calcAlturaArbol(tipoArbolBB a, int auxAltura);

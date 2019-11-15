@@ -1,4 +1,4 @@
-/* Arbol Binario de Búsqueda en C      */
+/* Arbol Binario de Búsqueda en C  */
 
 #include <stdlib.h>
 #include <stdio.h>

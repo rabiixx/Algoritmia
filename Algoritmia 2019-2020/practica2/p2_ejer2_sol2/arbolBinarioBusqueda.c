@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "arbolBinarioBusqueda.h"
-
+#include <assert.h>
 
  /*typedef int tipoElementoArbolBusqueda;
 
@@ -124,3 +124,42 @@ bool esHoja(tipoArbolBB a) {
 tipoElementoArbolBusqueda devolverRaiz(tipoArbolBB a) {
 	return a->elem;
 }
+
+int calcAlturaArbol(tipoArbolBB a) {
+	
+	if ( !a ) return 0;
+
+	int altIzq = calcAlturaArbol(a->izda);
+	int altDer = calcAlturaArbol(a->dcha);
+
+	return (altIzq > altDer) ? (altIzq + 1) : (altDer + 1);
+
+}
+
+int contarNodos(tipoArbolBB a) {
+
+	if ( !a ) return 0;
+
+	int contIzq = contarNodos(a->izda);
+	int contDer = contarNodos(a->dcha);
+
+	return (contIzq + contDer + 1);
+
+	return (contarNodos(a->izda) + contarNodos(a->dcha))
+
+}
+
+/* Contar numero de nodos completos */
+unsigned int getfullCount(tipoArbolBB a) 
+{ 
+    if (a == NULL) 
+       return 0; 
+   
+    int res = 0; 
+    if  (a->izda && a->dcha)  
+       res++; 
+   
+    res += (getfullCount(a->izda) +  
+            getfullCount(a->dcha)); 
+    return res; 
+} 

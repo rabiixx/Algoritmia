@@ -14,7 +14,8 @@ int main(){
 		printf("2 - Eliminar un elemento del arbol\n");
 		printf("3 - Mostrar el arbol en preorden\n");
 		printf("4 - Mostrar el arbol en inorden\n");
-		printf("5 - Salir\n");
+		printf("5 - Calcular altura del arbol\n");
+		printf("6 - Salir\n");
 		printf("Escoja una opcion: ");
 		scanf("%d",&opcion);
 		switch(opcion){           
@@ -38,11 +39,13 @@ int main(){
 				printf("Inorden: ");
 				mostrarInorden(arbol);
 				printf("\n");
-			case 5: 	
-				return  EXIT_SUCCESSS;
+			case 5:
+				printf("Altura del arbol: %d\n", calcAlturaArbol(arbol, 0));
+			case 6: 	
+				return EXIT_SUCCESSS;
 		}	
-	}while(opcion<5);
+	}while(opcion<6);
 
-	return  EXIT_SUCCESSS;
+	return EXIT_SUCCESSS;
 
 }
