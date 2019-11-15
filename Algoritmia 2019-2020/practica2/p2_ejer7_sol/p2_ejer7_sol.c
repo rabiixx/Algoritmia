@@ -19,15 +19,15 @@ tipoArbolBin abeto_recursivo(int arrPre[], int arrIn[], int low_index, int high_
 	if (low_index > high_index) 
 		return NULL;
 
-	int auxELem = arrPre[(*preIndex)];
+	int auxElem = arrPre[(*preIndex)];
 
 	(*preIndex)++;
 
 	/* El nodo padre no tiene ningun hijo */
 	if (low_index == high_index )
-		return construir(auxELem, NULL, NULL);
+		return construir(auxElem, NULL, NULL);
 
-	int index = searchIndex(arrIn, low_index, high_index, auxELem);
+	int index = searchIndex(arrIn, low_index, high_index, auxElem);
 
 	tipoArbolBin aux1 =	abeto_recursivo(arrPre, arrIn, low_index, index -1, preIndex);
 	tipoArbolBin aux2 = abeto_recursivo(arrPre, arrIn, index + 1, high_index, preIndex);
